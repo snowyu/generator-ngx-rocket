@@ -13,7 +13,7 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 <% } -%>
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
+import { HomePage } from './home.component';
 import { QuoteService } from './quote.service';
 
 @NgModule({
@@ -32,11 +32,11 @@ import { QuoteService } from './quote.service';
   ],
 <% if (props.ui === 'ionic') { -%>
   entryComponents: [
-    HomeComponent
+    HomePage
   ],
 <% } -%>
   declarations: [
-    HomeComponent
+    HomePage
   ],
   providers: [
     QuoteService

@@ -16,17 +16,17 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 <% } -%>
-import { LoginComponent } from './login.component';
+import { LoginPage } from './login.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('LoginPage', () => {
+  let component: LoginPage;
+  let fixture: ComponentFixture<LoginPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
 <% if (props.ui === 'ionic') { -%>
-        IonicModule.forRoot(LoginComponent),
+        IonicModule.forRoot(LoginPage),
 <% } else if (props.ui === 'bootstrap') { -%>
         NgbModule.forRoot(),
 <% } else if (props.ui === 'material') { -%>
@@ -40,13 +40,13 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         CoreModule
       ],
-      declarations: [LoginComponent]
+      declarations: [LoginPage]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(LoginPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

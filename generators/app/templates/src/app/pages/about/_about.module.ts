@@ -11,7 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 <% } -%>
 import { AboutRoutingModule } from './about-routing.module';
-import { AboutComponent } from './about.component';
+import { AboutPage } from './about.component';
 
 @NgModule({
   imports: [
@@ -27,11 +27,11 @@ import { AboutComponent } from './about.component';
   ],
 <% if (props.ui === 'ionic') { -%>
   entryComponents: [
-    AboutComponent
+    AboutPage
   ],
 <% } -%>
   declarations: [
-    AboutComponent
+    AboutPage
   ]
 })
 export class AboutModule { }
