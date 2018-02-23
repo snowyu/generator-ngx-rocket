@@ -1,7 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
-import { HttpModule, Http, XHRBackend, ConnectionBackend, RequestOptions } from '@angular/http';
 import { TranslateModule } from '@ngx-translate/core';
 <% if (props.ui === 'bootstrap') { -%>
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ import { IonicModule } from 'ionic-angular';
 import { MaterialModule } from '@app/material.module';
 <% } -%>
 import { ShellComponent } from './shell/shell.component';
-<% if (props.ui === 'bootstrap' || (props.ui === 'material' && props.layout === 'simple')) { -%>
+<% if (props.ui === 'bootstrap' || (props.ui === 'material' && props.layout === 'simple') || props.ui === 'raw') { -%>
 import { HeaderComponent } from './shell/header/header.component';
 <% } -%>
 import { RouteReusableStrategy } from './route-reusable-strategy';
@@ -26,17 +26,14 @@ import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
-
-export function createHttpService(backend: ConnectionBackend,
-                                  defaultOptions: RequestOptions,
-                                  httpCacheService: HttpCacheService) {
-  return new HttpService(backend, defaultOptions, httpCacheService);
-}
+import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
+import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
+import { CacheInterceptor } from './http/cache.interceptor';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     TranslateModule,
 <% if (props.ui === 'bootstrap') { -%>
     NgbModule,
@@ -54,7 +51,7 @@ export function createHttpService(backend: ConnectionBackend,
   ],
 <% } -%>
   declarations: [
-<% if (props.ui === 'bootstrap' || (props.ui === 'material' && props.layout === 'simple')) { -%>
+<% if (props.ui === 'bootstrap' || (props.ui === 'material' && props.layout === 'simple') || props.ui === 'raw') { -%>
     HeaderComponent,
 <% } -%>
     ShellComponent
@@ -66,10 +63,17 @@ export function createHttpService(backend: ConnectionBackend,
 <% } -%>
     I18nService,
     HttpCacheService,
+    ApiPrefixInterceptor,
+    ErrorHandlerInterceptor,
+    CacheInterceptor,
     {
-      provide: Http,
-      deps: [XHRBackend, RequestOptions, HttpCacheService],
-      useFactory: createHttpService
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiPrefixInterceptor,
+      multi: true
+    },
+    {
+      provide: HttpClient,
+      useClass: HttpService
     },
     {
       provide: RouteReuseStrategy,
