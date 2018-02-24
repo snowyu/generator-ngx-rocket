@@ -8,7 +8,7 @@ import { QuoteService } from './quote.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomePage implements OnInit {
+export class HomePageComponent implements OnInit {
 
   quote: string;
   isLoading: boolean;

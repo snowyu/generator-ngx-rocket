@@ -6,15 +6,15 @@ import { extract } from '@app/core';
 <% } else { -%>
 import { Route, extract } from '@app/core';
 <% } -%>
-import { AboutPage } from './about.component';
+import { AboutPageComponent } from './about.component';
 
 const routes: Routes = [
 <% if (props.lazy) { -%>
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: AboutPage, data: { title: extract('About') } }
+  { path: '', component: AboutPageComponent, data: { title: extract('About') } }
 <% } else { -%>
   Route.withShell([
-    { path: 'about', component: AboutPage, data: { title: extract('About') } }<% if (props.lazy) { %> as Route <% } %>
+    { path: 'about', component: AboutPageComponent, data: { title: extract('About') } }<% if (props.lazy) { %> as Route <% } %>
   ])
 <% } -%>
 ];

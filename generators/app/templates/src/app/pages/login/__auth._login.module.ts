@@ -15,7 +15,7 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 <% } -%>
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginPage } from './login.component';
+import { LoginPageComponent } from './login.component';
 
 @NgModule({
   imports: [
@@ -35,11 +35,11 @@ import { LoginPage } from './login.component';
   ],
 <% if (props.ui === 'ionic') { -%>
   entryComponents: [
-    LoginPage
+    LoginPageComponent
   ],
 <% } -%>
   declarations: [
-    LoginPage
+    LoginPageComponent
   ]
 })
 export class LoginModule { }

@@ -12,18 +12,18 @@ import { SharedModule } from '@app/shared';
 <% if (props.ui === 'material') { -%>
 import { MaterialModule } from '@app/material.module';
 <% } -%>
-import { HomePage } from './home.component';
+import { HomePageComponent } from './home.component';
 import { QuoteService } from './quote.service';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('HomePageComponent', () => {
+  let component: HomePageComponent;
+  let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
         imports: [
 <% if (props.ui === 'ionic') { -%>
-          IonicModule.forRoot(HomePage),
+          IonicModule.forRoot(HomePageComponent),
 <% } else if (props.ui === 'material') { -%>
           BrowserAnimationsModule,
           FlexLayoutModule,
@@ -33,14 +33,14 @@ describe('HomePage', () => {
           SharedModule,
           HttpClientTestingModule
         ],
-        declarations: [HomePage],
+        declarations: [HomePageComponent],
         providers: [QuoteService]
       })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -16,7 +16,7 @@ const log = new Logger('Login');
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginPage implements OnInit {
+export class LoginPageComponent implements OnInit {
 
   version: string = environment.version;
   error: string;

@@ -9,16 +9,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 <% if (props.ui === 'material') { -%>
 import { MaterialModule } from '@app/material.module';
 <% } -%>
-import { AboutPage } from './about.component';
+import { AboutPageComponent } from './about.component';
 
-describe('AboutPage', () => {
-  let component: AboutPage;
-  let fixture: ComponentFixture<AboutPage>;
+describe('AboutPageComponent', () => {
+  let component: AboutPageComponent;
+  let fixture: ComponentFixture<AboutPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
 <% if (props.ui === 'ionic') { -%>
-        imports: [IonicModule.forRoot(AboutPage)],
+        imports: [IonicModule.forRoot(AboutPageComponent)],
 <% } else if (props.ui === 'material') { -%>
         imports: [
           BrowserAnimationsModule,
@@ -26,13 +26,13 @@ describe('AboutPage', () => {
           MaterialModule
         ],
 <% } -%>
-        declarations: [AboutPage]
+        declarations: [AboutPageComponent]
       })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AboutPage);
+    fixture = TestBed.createComponent(AboutPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
