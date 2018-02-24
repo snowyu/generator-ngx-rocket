@@ -29,12 +29,12 @@ import { environment } from '@env/environment';
 <% } -%>
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
-import { HomeModule } from './home/home.module';
+import { HomeModule } from './pages/home/home.module';
 <% if (!props.lazy) { -%>
-import { AboutModule } from './about/about.module';
+import { AboutModule } from './pages/about/about.module';
 <% } -%>
 <% if (props.auth) { -%>
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './pages/login/login.module';
 <% } -%>
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

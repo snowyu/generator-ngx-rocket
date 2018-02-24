@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
 <% if (props.lazy) { -%>
   Route.withShell([
-    { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
+    { path: 'about', loadChildren: 'app/pages/about/about.module#AboutModule' }
   ]),
 <% } -%>
   // Fallback when no prior route is matched
